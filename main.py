@@ -64,6 +64,5 @@ def send_text(text):
                 }
             ]
         }
-    return data
     response = requests.post(url, headers=headers, data=json.dumps(data))
     return response.json()  
