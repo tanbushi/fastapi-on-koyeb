@@ -4,7 +4,7 @@ from fastapi import FastAPI
 
 app = FastAPI()
 
-import requests
+import requests, json
 
 
 @app.get("/")
