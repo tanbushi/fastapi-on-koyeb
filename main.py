@@ -9,8 +9,7 @@ import requests, json
 
 @app.get("/")
 def read_root():
-    x = requests.get('https://www.runoob.com/')
-    return {"Hello": x.text}
+    return {"Hello": process.env.testenv}
 
 
 @app.get("/items/{item_id}")
