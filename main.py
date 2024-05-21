@@ -9,7 +9,7 @@ import requests, json, os
 
 @app.get("/")
 def read_root():
-    return {"Hello": process.env.testenv}
+    return {"Hello": os.environ.get('testenv')}
 
 
 @app.get("/items/{item_id}")
