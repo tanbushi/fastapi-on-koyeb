@@ -4,10 +4,13 @@ from fastapi import FastAPI
 
 app = FastAPI()
 
+import requests
+
 
 @app.get("/")
 def read_root():
-    return {"Hello": "World-123"}
+    x = requests.get('https://www.runoob.com/')
+    return {"Hello": x.text}
 
 
 @app.get("/items/{item_id}")
