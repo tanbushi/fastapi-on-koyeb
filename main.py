@@ -23,11 +23,11 @@ entrypoint="https://generativelanguage.googleapis.com/v1beta"
 def read_root():
     if is_koyeb:
         apikey = os.environ.get('apikey') # 读取环境变量 koyeb 环境变量模式
-        return apikey
     else:
         apikey = os.getenv('apikey') # 读取环境变量 .env 模式
 
     url=f'{entrypoint}/models/{model}:generateContent?key={apikey}'
+    print(url)
     headers = {'Content-Type': 'application/json'}
     
     data = {
