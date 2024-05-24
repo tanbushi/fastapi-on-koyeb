@@ -6,7 +6,7 @@ app = FastAPI()
 
 import requests, json, os
 
-is_koyeb = False
+is_koyeb = True
 
 if not is_koyeb:
 ##############################
@@ -25,8 +25,15 @@ else:
 url=f'{entrypoint}/models/{model}:generateContent?key={apikey}'
 headers = {'Content-Type': 'application/json'}
 
+@app.post("/questions/")
+def create_question(question:dict):
+    # return url
+    response = requests.post(url, headers=headers, data=json.dumps(question))
+    return response.json()
+
 @app.get("/")
 def read_root():
+    print('909090909090909')
     return {"Hello": "World"}
 
     # data = {
