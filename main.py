@@ -54,10 +54,7 @@ def read_item(text: str):
 
 @app.post("/items/")
 def create_item(item:dict):
-    print('12345')
-    return "abcdefg"
-    # return {"q":item['q']}
-    # return send_text(item['q'])
+    return send_text(item['q'])
 
 def send_text(text):
     data = {
