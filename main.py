@@ -52,6 +52,13 @@ def read_item(item_id: int, q: Union[str, None] = None):
 def read_item(text: str):
     return send_text(text)
 
+@app.post("/items/")
+def create_item(item:dict):
+    print('12345')
+    return "abcdefg"
+    # return {"q":item['q']}
+    # return send_text(item['q'])
+
 def send_text(text):
     data = {
         'contents': [
@@ -64,5 +71,7 @@ def send_text(text):
                 }
             ]
         }
+    # return data
     response = requests.post(url, headers=headers, data=json.dumps(data))
     return response.json()  
+
