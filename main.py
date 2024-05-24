@@ -75,7 +75,7 @@ def send_text(text):
     # response = {"candidates":[{"content":{"parts":[{"text":"你好呀！ 很高兴见到你！ 你想聊些什么呢？ \n"}],"role":"model"},"finishReason":"STOP","index":0,"safetyRatings":[{"category":"HARM_CATEGORY_SEXUALLY_EXPLICIT","probability":"NEGLIGIBLE"},{"category":"HARM_CATEGORY_HATE_SPEECH","probability":"NEGLIGIBLE"},{"category":"HARM_CATEGORY_HARASSMENT","probability":"NEGLIGIBLE"},{"category":"HARM_CATEGORY_DANGEROUS_CONTENT","probability":"NEGLIGIBLE"}]}],"usageMetadata":{"promptTokenCount":2,"candidatesTokenCount":15,"totalTokenCount":17}}
     
     response = requests.post(url, headers=headers, data=json.dumps(data))
-    response_json = response.json()
-    return response_json['candidates'][0]['content']['parts'][0]['text'] 
+    return response.json()
+    # return response_json['candidates'][0]['content']['parts'][0]['text'] 
 
 
