@@ -29,7 +29,8 @@ headers = {'Content-Type': 'application/json'}
 def create_question(question:dict):
     # return url
     response = requests.post(url, headers=headers, data=json.dumps(question))
-    return response.json()
+    response_json = response.json()
+    return response_json['candidates'][0]['content']['parts'][0]['text']
 
 @app.get("/")
 def read_root():
@@ -66,6 +67,37 @@ def create_item(item:dict):
     except:
         return "q not found"
     return send_text(q)
+
+@app.post("/v1/completions")
+def create_completion(data:dict):
+    try:
+        # 准备数据
+        data_str = json.dumps(data)    
+        
+        # 发送请求
+        response = requests.post(url, headers=headers, data=json.dumps(data))
+        
+        # 检查响应状态码
+        response.raise_for_status()
+
+        # 解析响应
+        response_json = response.json()
+        
+        # 安全地访问响应内容
+        candidates = response_json.get('candidates', [])
+        if candidates:
+            content = candidates[0].get('content', {})
+            parts = content.get('parts', [])
+            if parts:
+                return parts[0].get('text', "")
+    except requests.exceptions.RequestException as e:
+        print(f"网络请求失败: {e}")
+    except KeyError as e:
+        print(f"解析响应失败: 缺少必要的键 {e}")
+    except Exception as e:
+        print(f"未知错误: {e}")
+
+    return None  # 出现异常时返回None
 
 def send_text(text):
     data = {
